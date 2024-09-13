@@ -6,4 +6,7 @@ ssqaapitest.egg-info/SOURCES.txt
 ssqaapitest.egg-info/dependency_links.txt
 ssqaapitest.egg-info/top_level.txt
 ssqaapitest/src/__init__.py
+ssqaapitest/src/utilities/__init__.py
+ssqaapitest/src/utilities/genericUtilities.py
 ssqaapitest/tests/__init__.py
+ssqaapitest/tests/test_healthcheck.py
