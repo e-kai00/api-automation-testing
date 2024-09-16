@@ -1,5 +1,6 @@
 import pytest
 import logging as logger
+import pdb
 from ssqaapitest.src.utilities.genericUtilities import generate_random_email_and_password
 from ssqaapitest.src.helpers.customers_helper import CustomerHelper
 
@@ -19,10 +20,10 @@ def test_create_customer_only_email_password():
     customer_obj = CustomerHelper()
     customer_api_info = customer_obj.create_customer(email=email, password=password)
 
-    import pdb; pdb.set_trace()
+    # varify email and first nanme in the response
+    assert customer_api_info['email'] == email, f'Create Customer API returned wrong emai. Email: {email}'
+    assert customer_api_info['first_name'] == '', f'Create Customer API returned value for first_name but it should be empty.'
 
-    # varify status code of the call
-
-    # varify email in the response
+    # pdb.set_trace()
 
     # varify customer is created in DB
