@@ -21,7 +21,7 @@ class RequestsUtility:
 
     def assert_status_code(self):
 
-        assert self.response_status_code == self.expected_status_code, (
+        assert self.status_code == self.expected_status_code, (
             f'Bad Status Code. Expected {self.expected_status_code}. Actual status code: {self.status_code}'
             f'URL: {self.url}. Response JSON: {self.response_json}'
         )
