@@ -41,6 +41,5 @@ class DBUtility:
         return response_dict
             
 
-
     def execute_sql(self, sql):
         pass

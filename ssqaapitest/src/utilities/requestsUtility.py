@@ -22,7 +22,7 @@ class RequestsUtility:
     def assert_status_code(self):
 
         assert self.status_code == self.expected_status_code, (
-            f'Bad Status Code. Expected {self.expected_status_code}. Actual status code: {self.status_code}'
+            f'Bad Status Code. Expected {self.expected_status_code}. Actual status code: {self.status_code} '
             f'URL: {self.url}. Response JSON: {self.response_json}'
         )
 
@@ -45,10 +45,30 @@ class RequestsUtility:
 
         self.assert_status_code()
 
-        logger.debug(f'API response: {self.response_json}')
+        logger.debug(f'API POST response: {self.response_json}')
 
         return self.response_json
 
 
-    def get(self):
-        pass
+    def get(self, endpoint, payload=None, headers=None, expected_status_code=200):
+        
+        if not headers:
+            headers = {'Content-Type': 'application/json'}
+        self.url = self.base_url + endpoint
+
+        response = requests.get(
+            url=self.url, 
+            data=json.dumps(payload),
+            headers=headers,
+            auth=self.auth,
+        )
+
+        self.status_code = response.status_code
+        self.expected_status_code = expected_status_code
+        self.response_json = response.json()
+
+        self.assert_status_code()
+
+        logger.debug(f'API GET response: {self.response_json}')
+
+        return self.response_json
