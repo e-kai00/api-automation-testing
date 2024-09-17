@@ -23,5 +23,4 @@ class CustomerDAO:
         response_sql = self.db_helper.execute_select(sql)
 
         return random.sample(response_sql, int(qty))
-
     
