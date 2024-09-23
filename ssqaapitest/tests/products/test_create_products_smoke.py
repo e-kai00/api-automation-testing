@@ -4,8 +4,9 @@ from ssqaapitest.src.helpers.products_helper import ProductHelper
 from ssqaapitest.src.dao.products_dao import ProductsDAO
 import pdb
 
+pytestmark = [pytest.mark.products, pytest.mark.smoke]
 
-@pytest.mark.products
+
 @pytest.mark.tcid26
 def test_create_1_simple_product():
 

@@ -4,8 +4,8 @@ from ssqaapitest.src.utilities.requestsUtility import RequestsUtility
 from ssqaapitest.src.dao.products_dao import ProductsDAO
 from ssqaapitest.src.helpers.products_helper import ProductHelper
 
+pytestmark = [pytest.mark.products, pytest.mark.smoke]
 
-@pytest.mark.products
 @pytest.mark.tcid24
 def test_get_all_products():
      
@@ -17,7 +17,6 @@ def test_get_all_products():
     # pdb.set_trace()
 
 
-@pytest.mark.products
 @pytest.mark.tcid25
 def test_get_product_by_id():
 
