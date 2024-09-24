@@ -18,7 +18,8 @@ class WooApiUtility:
         url=self.base_url,
         consumer_key=wc_creds['wc_key'],
         consumer_secret=wc_creds["wc_secret"],
-        version="wc/v3"
+        version="wc/v3",
+        timeout=20
     )   
         
 
@@ -26,7 +27,7 @@ class WooApiUtility:
 
         assert self.status_code == self.expected_status_code, (
             f'Bad Status Code. Expected {self.expected_status_code}. Actual status code: {self.status_code} '
-            f'URL: {self.url}. Response JSON: {self.response_json}'
+            f'URL: {self.wc_endpoint}. Response JSON: {self.response_json}'
         )
 
     
@@ -37,12 +38,30 @@ class WooApiUtility:
         self.status_code = response.status_code
         self.expected_status_code = expected_status_code
         self.response_json = response.json()
+        self.wc_endpoint = wc_endpoint
 
         self.assert_status_code()
 
         logger.debug(f'API GET response: {self.response_json}')
 
         return self.response_json
+    
+
+    def post(self, wc_endpoint, params=None, expected_status_code=200):
+
+        response = self.wcapi.post(wc_endpoint, data=params)
+
+        self.status_code = response.status_code
+        self.expected_status_code = expected_status_code
+        self.response_json = response.json()
+        self.wc_endpoint = wc_endpoint
+
+        self.assert_status_code()
+
+        logger.debug(f'API POST response: {self.response_json}')
+
+        return self.response_json
+
 
 
 if __name__ == '__main__':

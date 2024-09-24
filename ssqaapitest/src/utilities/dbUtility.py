@@ -27,6 +27,7 @@ class DBUtility:
 
         try:
             logger.debug(f'Executing: {sql}')
+            
             cur = connection.cursor(DictCursor)
             cur.execute(sql)
             response_dict = cur.fetchall()
