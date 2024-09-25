@@ -65,3 +65,7 @@ class OrdersHelper:
                 f"Create order does not have at least 1 expected product in DB. "
                 f"Product id: {product['product_id']}. Order id: {order_id}."
             )
+
+
+    def call_update_order(self, order_id, payload):
+        return self.woo_helper.put(f'orders/{order_id}', params=payload)

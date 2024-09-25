@@ -3,6 +3,7 @@ import logging as logger
 from woocommerce import API
 from ssqaapitest.src.configs.hosts_config import WOO_API_HOSTS
 from ssqaapitest.src.utilities.credentialsUtility import CredentialsUtility
+import pdb
 
 
 class WooApiUtility:
@@ -59,6 +60,22 @@ class WooApiUtility:
         self.assert_status_code()
 
         logger.debug(f'API POST response: {self.response_json}')
+
+        return self.response_json
+    
+
+    def put(self, wc_endpoint, params=None, expected_status_code=200):
+
+        response = self.wcapi.put(wc_endpoint, data=params)
+
+        self.status_code = response.status_code
+        self.expected_status_code = expected_status_code
+        self.response_json = response.json()
+        self.wc_endpoint = wc_endpoint
+
+        self.assert_status_code()
+
+        logger.debug(f'API PUT response: {self.response_json}')
 
         return self.response_json
 
