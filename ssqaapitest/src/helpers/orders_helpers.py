@@ -69,3 +69,7 @@ class OrdersHelper:
 
     def call_update_order(self, order_id, payload):
         return self.woo_helper.put(f'orders/{order_id}', params=payload)
+    
+
+    def call_retrieve_order(self, order_id):
+        return self.woo_helper.get(f'orders/{order_id}')
