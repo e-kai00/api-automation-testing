@@ -40,3 +40,11 @@ class ProductHelper:
             raise Exception(f'Unable to find all products after {max_pages} pages.')
 
         return all_products
+    
+
+    def call_retrieve_product(self, product_id):
+        return self.requests_utility.get(f'products/{product_id}')
+    
+
+    def call_update_product(self, product_id, payload=None):
+        return self.requests_utility.put(f'products/{product_id}', payload=payload)

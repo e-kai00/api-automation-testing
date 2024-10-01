@@ -72,3 +72,27 @@ class RequestsUtility:
         logger.debug(f'API GET response: {self.response_json}')
 
         return self.response_json
+    
+
+    def put(self, endpoint, payload=None, headers=None, expected_status_code=200):
+
+        if not headers:
+            headers = {'Content-Type': 'application/json'}
+        self.url = self.base_url + endpoint
+
+        response = requests.put(
+            url=self.url, 
+            data=json.dumps(payload),
+            headers=headers,
+            auth=self.auth,
+        )
+        self.status_code = response.status_code
+        self.expected_status_code = expected_status_code
+        self.response_json = response.json()
+
+        self.assert_status_code()
+
+        logger.debug(f'API PUT response: {self.response_json}')
+
+        return self.response_json
+
